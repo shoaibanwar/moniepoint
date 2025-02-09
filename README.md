@@ -77,6 +77,14 @@ docker-compose down
 
 ## API Endpoints
 
+### Base Url
+
+```
+http://127.0.0.1:5001
+http://127.0.0.1:5002
+http://127.0.0.1:5003
+```
+
 ### Store a Key-Value Pair
 
 ```http
