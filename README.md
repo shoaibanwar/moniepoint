@@ -46,18 +46,6 @@ git clone <repo-url>
 cd <repo-name>
 ```
 
-### Set Up Environment
-
-Create a `.env` file in the root directory:
-
-```ini
-STORAGE_FILE=/data/kvstore.db
-WAL_FILE=/data/kvstore.wal
-REPLICAS=web1:5000,web2:5000,web3:5000
-CACHE_SIZE=1000
-PYTHONUNBUFFERED=1
-```
-
 ### Run with Docker
 
 Build and start the containers:
@@ -130,8 +118,6 @@ POST /delete
 
 ## Logging & Monitoring
 
-- Logs are directed to `stdout` for easy monitoring in Docker.
-- To check logs:
-  ```sh
-  docker logs moniepoint-app-1
-  ```
+```sh
+docker logs moniepoint-app-1
+```
