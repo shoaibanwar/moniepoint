@@ -55,14 +55,6 @@ cd docker
 docker-compose up --build -d
 ```
 
-To stop:
-
-```sh
-docker-compose down
-```
-
----
-
 ## API Endpoints
 
 ### Base Url
