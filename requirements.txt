@@ -1,0 +1,8 @@
+python-dotenv==1.0.0
+fastapi==0.95.2
+uvicorn==0.22.0
+pydantic
+aiohttp==3.7.4
+aiofiles==0.7.0
+cachetools==4.2.4
+plyvel

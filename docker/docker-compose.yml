@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  web1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: moniepoint-app-1
+    restart: always
+    working_dir: /app
+    ports:
+      - "5001:5000"
+    env_file:
+      - ../.env
+    volumes:
+      - ../src:/app
+      - ../data:/data  # Shared volume for persistent storage
+    environment:
+      STORAGE_FILE: /data/kvstore1.db
+      WAL_FILE: /data/kvstore1.wal
+      REPLICAS: "web2:5000,web3:5000"
+      PYTHONUNBUFFERED: 1
+
+  web2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: moniepoint-app-2
+    restart: always
+    working_dir: /app
+    ports:
+      - "5002:5000"
+    env_file:
+      - ../.env
+    volumes:
+      - ../src:/app
+      - ../data:/data
+    environment:
+      STORAGE_FILE: /data/kvstore2.db
+      WAL_FILE: /data/kvstore2.wal
+      REPLICAS: "web1:5000,web3:5000"
+      PYTHONUNBUFFERED: 1
+
+  web3:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: moniepoint-app-3
+    restart: always
+    working_dir: /app
+    ports:
+      - "5003:5000"
+    env_file:
+      - ../.env
+    volumes:
+      - ../src:/app
+      - ../data:/data
+    environment:
+      STORAGE_FILE: /data/kvstore3.db
+      WAL_FILE: /data/kvstore3.wal
+      REPLICAS: "web1:5000,web2:5000"
+      PYTHONUNBUFFERED: 1
+
+volumes:
+  data:
+    driver: local
